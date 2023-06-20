@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.redhat.appfoundations.camel.test.CamelRouteTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 1, Time elapsed: 3.618 s - in com.redhat.appfoundations.camel.test.CamelRouteTest

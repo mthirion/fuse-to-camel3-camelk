@@ -1,0 +1,16 @@
+<routes xmlns="http://camel.apache.org/schema/spring">
+
+
+    <route id="http-inbound-route">
+
+        <from uri="platform-http://{{app.path}}"/>
+        <log message="${body}"/>
+
+        <!-- Continue here -->
+        
+
+    </route>
+
+    
+
+</routes>

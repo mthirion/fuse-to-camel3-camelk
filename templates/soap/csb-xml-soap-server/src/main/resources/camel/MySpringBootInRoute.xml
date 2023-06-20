@@ -1,0 +1,22 @@
+<routes xmlns="http://camel.apache.org/schema/spring">
+
+
+    <route id="soap-server-route">
+
+        <from uri="cxf:bean:mycxfendpoint"/>
+        
+        <!-- PROCESS SOAP REQUEST AND BUILD RESPONSE HERE -->
+
+        <!--
+            <choice>
+			    <when>
+                    <simple>${header.operationName} == ''</simple>
+                </when>
+                <otherwise/>
+            </choice>
+        -->
+        
+        <log message="${body}"/>
+    </route>
+    
+</routes>

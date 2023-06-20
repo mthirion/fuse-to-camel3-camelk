@@ -1,0 +1,26 @@
+<routes xmlns="http://camel.apache.org/schema/spring">
+
+  
+    <route id="jms-outboundroute">
+    
+        <from uri="timer:mytimer?repeatCount=5&amp;delay=3000&amp;period=2000"/>
+
+        <setBody><simple>This is a JMS message</simple></setBody>
+        <log message="Created JMS message: ${body}"/>
+
+        <toD uri="jms:queue:tranferqueue"/>
+        
+    </route>   
+    
+    <route id="amqp-outboundroute">
+    
+        <from uri="timer:mytimer?repeatCount=5&amp;delay=2000&amp;period=2000"/>
+
+        <setBody><simple>This is an AMQP message</simple></setBody>
+        <log message="Created AMQP message: ${body}"/>
+
+        <toD uri="amqp:queue:tranferqueue"/>
+        
+    </route>     
+    
+</routes>

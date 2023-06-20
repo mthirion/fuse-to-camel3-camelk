@@ -1,0 +1,16 @@
+<routes xmlns="http://camel.apache.org/schema/spring">
+
+    
+    <route id="soap-outboundroute">
+    
+        <from uri="timer:mytimer?repeatCount=1&amp;delay=3000"/>
+
+        <setHeader name="operationName"><simple>{{my.cxf.target.operationname}}</simple></setHeader>
+        <setHeader name="operationNamespace"><simple>{{my.cxf.target.operationnamespace}}</simple></setHeader>
+        <toD uri="cxf:bean:mycxfendpoint"/>
+        
+
+        <log message="${body}"/>
+    </route>   
+
+</routes>

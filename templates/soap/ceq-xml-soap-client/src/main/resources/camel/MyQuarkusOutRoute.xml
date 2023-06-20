@@ -1,0 +1,33 @@
+<routes xmlns="http://camel.apache.org/schema/spring">
+   
+
+    <route id="soap-outboundroute-bean">
+    
+        <from uri="timer:mytimer?repeatCount=1&amp;delay=3000"/>
+
+        <!-- PROCESING -->
+
+        <setHeader name="operationName"><simple>{{my.cxf.target.operationname}}</simple></setHeader>
+        <setHeader name="operationNamespace"><simple>{{my.cxf.target.operationnamespace}}</simple></setHeader>
+        <to uri="cxf:bean:mycxfoutendpoint?cxfConfigurer=#mycxfconfigurer"/>
+
+
+        <log message="${body}"/>
+    </route>
+
+
+    <route id="soap-outboundroute-address">
+    
+        <from uri="timer:mytimer?repeatCount=1&amp;delay=4000"/>
+
+        <!-- PROCESING -->
+
+        <setHeader name="operationName"><simple>{{my.cxf.target.operationname}}</simple></setHeader>
+        <setHeader name="operationNamespace"><simple>{{my.cxf.target.operationnamespace}}</simple></setHeader>
+        <toD uri="cxf:{{my.cxf.target.address}}?serviceClass={{my.cxf.serviceclass}}&amp;dataFormat={{my.cxf.dataformat}}&amp;cxfConfigurer=#mycxfconfigurer"/>
+
+        <log message="${body}"/>
+
+    </route>
+ 
+</routes>

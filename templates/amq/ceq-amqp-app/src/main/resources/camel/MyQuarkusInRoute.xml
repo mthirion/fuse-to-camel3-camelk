@@ -1,0 +1,13 @@
+<routes xmlns="http://camel.apache.org/schema/spring">
+  
+    
+    <route id="amqp-inboundroute-bean">
+
+        <from uri="amqp:{{app.destination}}"/>     
+        <log message="AMQP message received: ${body}"/>
+
+        <!-- continue here -->
+        
+    </route>
+   
+</routes>

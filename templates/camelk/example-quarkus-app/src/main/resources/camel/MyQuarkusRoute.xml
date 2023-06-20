@@ -1,0 +1,32 @@
+<routes xmlns="http://camel.apache.org/schema/spring">
+
+    <!-- 
+       This is where the content of the Camel <route> must be migrated.
+    -->
+   
+    <route id="myroute">
+
+	<from id="_from4" uri="direct:getCustById"/>
+	<!--<from id="_from4" uri="rest:get:/cxf/status/custId/{id}"/>-->
+	
+	<log id="_log2" message="${header.operationName}"/>
+        <setHeader name="fuseversion">
+            <simple>{{fuse.version}}</simple>        
+        </setHeader>
+        <log id="_log3" message="fuse.version----------- ${headers.fuseversion}"/>
+        <log id="_log4" message="id----------- ${header.id}"/>
+        <!-- 
+        <choice id="_choice1">
+            <when id="_when1">
+                <simple>${header.operationName} == "status"</simple>
+        -->
+                <bean id="_bean3" method="status(${header.id},${headers.fuseversion})" ref="claimProcessor"/>
+                <marshal id="_marshal1">
+                    <json library="Jackson" prettyPrint="true"/>
+                </marshal>
+        <!--
+            </when>
+        </choice>        
+    -->
+    </route>
+</routes>

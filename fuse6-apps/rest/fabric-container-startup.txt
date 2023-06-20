@@ -1,0 +1,9 @@
+#podman pull weimeilin/fusefabric:naenablement
+
+podman run -it -p 8181:8181 -p 8182:8182 -p 8184:8184 weimeilin/fusefabric:naenablement
+
+#jboss-fuse/bin/fuse
+
+#curl http://localhost:8182/cxf/status/status/custId/123
+
+

@@ -1,0 +1,21 @@
+<routes xmlns="http://camel.apache.org/schema/spring">
+
+  
+    <route id="jms-inboundroute">
+    
+        <from uri="jms:{{app.destination}}"/>
+        <log message="Received JMS message: ${body}"/>
+        
+        <!-- continue here -->
+        
+    </route>     
+    
+    <route id="amqp-inboundroute">
+    
+        <from uri="amqp:{{app.destination}}"/>
+        <log message="Received AMQP message: ${body}"/>
+        
+        <!-- continue here -->
+
+    </route>      
+</routes>

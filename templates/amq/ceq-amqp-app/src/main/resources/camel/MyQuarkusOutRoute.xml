@@ -1,0 +1,18 @@
+<routes xmlns="http://camel.apache.org/schema/spring">
+
+    
+    <route id="amqp-outboundroute-bean">
+    
+        <!-- replace this part
+        <from uri="timer:mytimer?repeatCount=5&amp;delay=3000"/>
+
+        <setBody><constant>This is a Quarkus AMQP message</constant></setBody>
+        <log message="Create AMQP message: ${body}"/>
+        -->
+
+        <toD uri="amqp:{{app.destination}}"/>
+        
+    </route>
+
+
+</routes>

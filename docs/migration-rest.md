@@ -10,7 +10,7 @@ We'll use the claimDemo application, sourced from our Red Hat Learning System.
 It runs on a Fabric8 server, and exposes an API at:
 http://localhost:8182/cxf/status/status/custId/123
 
-To test the Fuse 6 application:
+To test the Fuse 6 application:  
 docker pull weimeilin/fusefabric:naenablement  
 docker run -it -p 8181:8181 -p 8182:8182 -p 8184:8184 weimeilin/fusefabric:naenablement
 

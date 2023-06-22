@@ -198,7 +198,7 @@
         <artifactId>camel-restdsl-openapi-plugin</artifactId>
         <version>${camel.rest.version}</version>
         <configuration>
-          <specificationUri>src/spec/openapi.json</specificationUri>
+          <specificationUri>src/spec/openapi.yaml</specificationUri>
           <outputDirectory>target/generated-sources/restdsl-openapi</outputDirectory>
           <restConfiguration>false</restConfiguration>
         </configuration>

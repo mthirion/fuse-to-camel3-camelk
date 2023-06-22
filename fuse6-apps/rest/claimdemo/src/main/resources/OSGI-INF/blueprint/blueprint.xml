@@ -23,12 +23,12 @@
 
         <route id="_route1">
             <from id="_from4" uri="cxfrs:bean:statusEndpoint"/>
-            <log id="_log2" message="${header.operationName}"/>
+            <log id="_log2" message="cxf operation name------${header.operationName}"/>
             <setHeader name="fuseversion">
 			    <simple>{{fuse.version}}</simple>        
 			</setHeader>
             <log id="_log3" message="fuse.version----------- ${headers.fuseversion}"/>
-            <log id="_log4" message="id----------- ${body}"/>
+            <log id="_log4" message="id----------- ${header.id}"/>
             <choice id="_choice1">
                 <when id="_when1">
                     <simple>${header.operationName} == "status"</simple>

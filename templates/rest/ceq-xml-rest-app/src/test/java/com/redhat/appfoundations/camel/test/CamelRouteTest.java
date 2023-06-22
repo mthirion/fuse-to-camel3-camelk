@@ -3,8 +3,7 @@ package com.redhat.appfoundations.camel.test;
 import org.apache.camel.RoutesBuilder;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.quarkus.test.CamelQuarkusTestSupport;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.*;
 
 import io.quarkus.test.junit.QuarkusTest;
 
@@ -17,6 +16,6 @@ public class CamelRouteTest extends CamelQuarkusTestSupport {
 
         Object o = template.requestBodyAndHeader("direct:", "body", "headername", "headervalue");
 
-	    assertNotNull(o);
+	    Assertions.assertNotNull(o);
     }
 }

@@ -199,7 +199,7 @@
         <version>${camel.rest.version}</version>
         <configuration>
           <specificationUri>src/spec/openapi.yaml</specificationUri>
-          <outputDirectory>target/generated-sources/restdsl-openapi</outputDirectory>
+          <outputDirectory>target/generated-rest-sources/restdsl-openapi</outputDirectory>
           <restConfiguration>false</restConfiguration>
         </configuration>
       </plugin>       

@@ -202,6 +202,14 @@
           <outputDirectory>target/generated-sources/restdsl-openapi</outputDirectory>
           <restConfiguration>false</restConfiguration>
         </configuration>
+        <executions>
+          <execution>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>generate-xml</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>       
     </plugins>
   </build>

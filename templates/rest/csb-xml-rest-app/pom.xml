@@ -187,6 +187,9 @@
   <profiles>
     <profile>
       <id>openshift</id>
+      <properties>
+        <activatedProperties>openshift</activatedProperties>
+      </properties>
       <dependencies>
         <dependency>
           <groupId>org.springframework.cloud</groupId>

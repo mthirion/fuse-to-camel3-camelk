@@ -5,7 +5,7 @@ import org.apache.camel.Processor;
 // ADD IMPORT IF NEEDED
 //import <my-dependency-packages>.*;
 
-public class BeansBinding.java extends RouteBuilder {
+public class BeansBinding extends RouteBuilder {
     @Override
     public void configure() throws Exception {
     }
@@ -14,8 +14,8 @@ public class BeansBinding.java extends RouteBuilder {
 
     // ADD YOUR BEANS HERE
     @BindToRegistry("my-bean-id")
-    public static MyCustomBean camelbean() {
-        return new MyCustomBean();
+    public static TYPE camelbean() {
+        return new TYPE();
     }
 
 

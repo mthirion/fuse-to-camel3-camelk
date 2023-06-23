@@ -19,9 +19,13 @@
   </properties>
 
   <distributionManagement>
-        <repository>
+	<snapshotRepository>
+            <id>nexus-camel-snapshots</id>
+            <url>https://--nexus-route--/repository/maven-snapshots/</url>
+	</snapshotRepository>
+	<repository>
             <id>nexus-camel</id>
-            <url>https://nexus-repo-camel-migration.apps.ocp4.***/repository/maven-releases/</url>
+            <url>https://--nexus-route--/repository/maven-releases/</url>
         </repository>
    </distributionManagement>
 

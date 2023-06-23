@@ -9,10 +9,22 @@
       </activation>
       <repositories>
         <repository>
-          <id>nexus-camel</id>
-          <url>https://nexus-repo-camel-migration.apps.ocp4.***/repository/maven-releases/</url>
+          <id>nexus-camel-snapshots</id>
+          <url>https://nexus-repo-camel-migration.apps.ocp4.ouachani.org/repository/maven-snapshots/</url>
           <snapshots>
             <enabled>true</enabled>
+            <checksumPolicy>fail</checksumPolicy>
+          </snapshots>
+          <releases>
+            <enabled>false</enabled>
+            <checksumPolicy>fail</checksumPolicy>
+          </releases>
+        </repository>
+        <repository>
+          <id>nexus-camel</id>
+          <url>https://nexus-repo-camel-migration.apps.ocp4.ouachani.org/repository/maven-releases/</url>
+          <snapshots>
+            <enabled>false</enabled>
             <checksumPolicy>fail</checksumPolicy>
           </snapshots>
           <releases>

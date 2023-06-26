@@ -14,11 +14,10 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <spring.boot-version>2.7.6</spring.boot-version>
+    <spring.boot-version>2.7.12</spring.boot-version>
     <surefire.plugin.version>3.0.0-M4</surefire.plugin.version>
     <jkube.generator.from>registry.access.redhat.com/ubi8/openjdk-11:1.14</jkube.generator.from>
-    <camel.version>3.18.3.redhat-00025</camel.version>
-    <camel.rest.version>3.18.3</camel.rest.version>
+    <camel.version>3.20.1.redhat-00064</camel.version>
     <spring.cloud-version>2022.0.1</spring.cloud-version>
     <spring.cloud.kubernetes-config-version>1.0.1.RELEASE</spring.cloud.kubernetes-config-version>
     <cxf.version>3.5.3.redhat-00033</cxf.version>
@@ -26,17 +25,8 @@
 
   <dependencyManagement>
     <dependencies>
-      <!-- Spring Boot BOM -->
       <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-dependencies</artifactId>
-        <version>${spring.boot-version}</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-      <!-- Camel BOM -->
-      <dependency>
-        <groupId>org.apache.camel.springboot</groupId>
+        <groupId>com.redhat.camel.springboot.platform</groupId>
         <artifactId>camel-spring-boot-bom</artifactId>
         <version>${camel.version}</version>
         <type>pom</type>
@@ -50,7 +40,6 @@
         <type>pom</type>
         <scope>import</scope>
       </dependency>
-
     </dependencies>
   </dependencyManagement>
 

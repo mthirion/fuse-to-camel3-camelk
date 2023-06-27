@@ -107,7 +107,7 @@
     </dependency> 
     <dependency>
       <groupId>org.apache.camel.springboot</groupId>
-      <artifactId>camel-soap-starter </artifactId>
+      <artifactId>camel-soap-starter</artifactId>
     </dependency>             
 		<dependency>
 			<groupId>org.apache.cxf</groupId>
@@ -206,7 +206,7 @@
                     <sourceRoot>${project.build.directory}/generated-sources/cxf</sourceRoot>
                     <wsdlOptions>
                         <wsdlOption>
-                            <wsdl>${basedir}/src/main/resources/wsdl/Claim.wsdl</wsdl>
+                            <wsdl>${basedir}/src/main/resources/wsdl/myservice.wsdl</wsdl>
                         </wsdlOption>                      
                     </wsdlOptions>
                 </configuration>

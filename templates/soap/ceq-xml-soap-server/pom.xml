@@ -74,16 +74,16 @@
     </dependency>
     <dependency>
       <groupId>org.apache.camel.quarkus</groupId>
-      <artifactId>camel-quarkus-servlet</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.camel.quarkus</groupId>
       <artifactId>camel-quarkus-xml-io-dsl</artifactId>
     </dependency>  
     <dependency>
       <groupId>org.apache.camel.quarkus</groupId>
       <artifactId>camel-quarkus-cxf-soap</artifactId>
-    </dependency>  
+    </dependency> 
+    <dependency>
+      <groupId>org.apache.camel.quarkus</groupId>
+      <artifactId>camel-quarkus-soap</artifactId>
+    </dependency>
     <dependency>
       <groupId>org.apache.ws.security</groupId>
       <artifactId>wss4j</artifactId>
@@ -223,7 +223,7 @@
                     <sourceRoot>${project.build.directory}/generated-sources/cxf</sourceRoot>
                     <wsdlOptions>
                         <wsdlOption>
-                            <wsdl>${basedir}/src/main/resources/wsdl/myservices.wsdl</wsdl>
+                            <wsdl>${basedir}/src/main/resources/wsdl/soapservice.wsdl</wsdl>
                         </wsdlOption>                      
                     </wsdlOptions>
                 </configuration>

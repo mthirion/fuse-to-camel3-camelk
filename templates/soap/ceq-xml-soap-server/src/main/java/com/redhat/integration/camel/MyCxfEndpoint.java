@@ -15,7 +15,7 @@ import com.oracle.svm.core.annotate.Inject;
 import javax.inject.Named;
 import javax.xml.namespace.QName;
 
-@Named("mycxfendpoint")
+@Named("mycxfservice")
 @ApplicationScoped
 public class MyCxfEndpoint extends CxfEndpoint {
 

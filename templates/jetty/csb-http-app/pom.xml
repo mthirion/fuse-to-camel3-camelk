@@ -20,7 +20,6 @@
     <camel.version>3.20.1.redhat-00064</camel.version>
     <spring.cloud-version>2022.0.1</spring.cloud-version>
     <spring.cloud.kubernetes-config-version>1.0.1.RELEASE</spring.cloud.kubernetes-config-version>
-    <cxf.version>3.5.3.redhat-00033</cxf.version>
   </properties>
 
   <dependencyManagement>

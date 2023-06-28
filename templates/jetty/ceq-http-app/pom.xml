@@ -15,7 +15,6 @@
     <quarkus.platform.version>2.13.5.SP1-redhat-00002</quarkus.platform.version>
     <skipITs>true</skipITs>
     <surefire-plugin.version>3.0.0-M7</surefire-plugin.version>
-    <cxf.version>3.5.3.redhat-00033</cxf.version>
   </properties>
   <dependencyManagement>
     <dependencies>

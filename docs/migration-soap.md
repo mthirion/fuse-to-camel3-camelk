@@ -25,7 +25,20 @@ It expects the below SOAP payload:
 ```  
 
 And would return the below data:  
-
+``` 
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cxf="http://cxf.learn/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <cxf:statusResponse>
+         <custid>123</custid>
+         <polno>A123456789</polno>
+         <claimno>34567789</claimno>
+         <status>OK</status>
+         <fuseversion>six.three</fuseversion>
+      </cxf:statusResponse>
+   </soapenv:Body>
+</soapenv:Envelope>
+``` 
 
 The corresponding WSDL is store in the src/main/resources/wsdl folder of the OSGI bundle.  
 

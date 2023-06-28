@@ -16,7 +16,6 @@
     <skipITs>true</skipITs>
     <skipTests>true</skipTests>
     <surefire-plugin.version>3.0.0-M7</surefire-plugin.version>
-    <cxf.version>3.5.3.redhat-00033</cxf.version>
   </properties>
   <dependencyManagement>
     <dependencies>

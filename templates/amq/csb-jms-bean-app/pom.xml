@@ -18,7 +18,6 @@
     <surefire.plugin.version>3.0.0-M4</surefire.plugin.version>
     <jkube.generator.from>registry.access.redhat.com/ubi8/openjdk-11:1.14</jkube.generator.from>
     <camel.version>3.18.3.redhat-00025</camel.version>
-    <camel.rest.version>3.18.3</camel.rest.version>
     <spring.cloud-version>2022.0.1</spring.cloud-version>
     <spring.cloud.kubernetes-config-version>1.0.1.RELEASE</spring.cloud.kubernetes-config-version>
     <redhat.amq7.client.version>2.16.0.redhat-00022</redhat.amq7.client.version>

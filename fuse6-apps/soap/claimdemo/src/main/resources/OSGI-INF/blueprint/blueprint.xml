@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:camelcxf="http://camel.apache.org/schema/blueprint/cxf"
+       xsi:schemaLocation="
+       http://www.osgi.org/xmlns/blueprint/v1.0.0 http://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd
+       http://camel.apache.org/schema/blueprint http://camel.apache.org/schema/blueprint/camel-blueprint.xsd">
+
+  <camelcxf:cxfEndpoint id="mycxf"
+	 address="http://localhost:8182/cxf/claim"
+	 endpointName="ns:ClaimWSPort"
+	 serviceName="ns:ClaimService"
+	 wsdlURL="wsdl/Claim.wsdl"
+	 serviceClass="learn.cxf.ClaimWS"
+	 xmlns:ns="http://cxf.learn/"/>
+
+
+  <!-- CXF client data as a node (wrapped mode) -->
+  <bean id="statusProcessor" class="org.blogdemo.claimdemo.StatusProcessor"></bean>
+
+  <camelContext xmlns="http://camel.apache.org/schema/blueprint">
+
+	<dataFormats>
+		<soapjaxb id="soap11" contextPath="learn.cxf" version="1.1"/>
+	</dataFormats>
+
+	<!-- Main CXF listener -->        
+	<route id="_route1">
+            <from id="_from4" uri="cxf:bean:mycxf"/>
+			<log message="operation [${header.operationName}], got message ${body}"/>
+   
+            <setHeader name="fuseversion">
+                            <simple>{{fuse.version}}</simple>
+                        </setHeader>
+
+			<unmarshal> <custom ref="soap11"/></unmarshal>
+            <choice id="_choice1">
+                <when id="_when1">
+                    <simple>${header.operationName} == "status"</simple>
+                    <process id="_process1" ref="statusProcessor"/>
+					<marshal> <custom ref="soap11"/></marshal>
+                </when>
+				<otherwise>
+                    <log message="Error processing service"/>
+                </otherwise>
+            </choice>
+        </route>
+ 
+  </camelContext>
+
+</blueprint>

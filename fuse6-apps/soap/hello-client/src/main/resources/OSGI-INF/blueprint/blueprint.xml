@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:camelcxf="http://camel.apache.org/schema/blueprint/cxf"
+       xsi:schemaLocation="
+       http://www.osgi.org/xmlns/blueprint/v1.0.0 http://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd
+       http://camel.apache.org/schema/blueprint http://camel.apache.org/schema/blueprint/camel-blueprint.xsd">
+
+  <camelcxf:cxfEndpoint id="mycxf"
+	 address="http://localhost:10000/mycxfserver/hello"
+	 endpointName="ns:HelloWSPort"
+	 serviceName="ns:HelloService"
+	 wsdlURL="wsdl/Hello.wsdl"
+	 serviceClass="learn.cxf.HelloWS"
+	 xmlns:ns="http://cxf.learn/"/>
+
+  <!-- CXF client parameter -->
+  <bean id="input1" class="java.lang.String">
+	<argument value="Alexander"/>
+  </bean>
+
+  <!-- CXF client parameter -->
+  <bean id="input2" class="learn.cxf.BonjourSubnode">
+	<property name="data1" value="the"/>
+	<property name="data2" value="Great"/>
+  </bean>
+
+  <!-- CXF client data as a list (unwrapped mode) -->
+  <bean id="inputList" class="java.util.ArrayList">
+    <argument>
+	  <list>
+	    <ref component-id="input1"/>
+	    <ref component-id="input2"/>
+	    <value>King of Macedonia</value>
+	  </list>
+    </argument>
+  </bean>
+
+  <!-- CXF client data as a node (wrapped mode) -->
+  <bean id="bonjour" class="learn.cxf.Bonjour">
+	<property name="input1" ref="input1"/>
+	<property name="input2" ref="input2"/>
+	<property name="input3" value="King of Macedonia"/>
+  </bean>
+
+  <camelContext xmlns="http://camel.apache.org/schema/blueprint">
+
+	<dataFormats>
+		<soapjaxb id="soap12" contextPath="learn.cxf" version="1.2"/>
+	</dataFormats>
+
+
+	<!-- sample CXF client for a simple data structure -->
+	<route id="call-simple-data">
+		<from uri="direct:call-simple-data"/>
+		<setBody>
+			<constant>cxf-client</constant>
+		</setBody>
+		<to uri="cxf:bean:mycxf"/>
+		<log message="The response contains [${body}]"/>
+	</route>
+
+	<!-- sample CXF client for a complex data structure -->
+	<route id="call-complex-data">
+		<from uri="direct:call-complex-data"/>
+		<setBody>
+			<simple>ref:inputList</simple>
+		</setBody>
+		<to uri="cxf:bean:mycxf?defaultOperationName=bonjour"/>
+		<log message="The response contains [${body}]"/>
+	</route>
+
+	<!-- sample CXF client for a complex data structure -->
+	<route id="call-complex-data-wrapped">
+		<from uri="direct:call-complex-data-wrapped"/>
+		<setBody>
+			<simple>ref:bonjour</simple>
+		</setBody>
+		<to uri="cxf:bean:mycxf?defaultOperationName=bonjour&amp;wrapped=true"/>
+		<log message="(wrapped) The response contains [${body}]"/>
+	</route>
+
+	<!-- sample to convert from POJO to SOAP and persist on file -->
+    <route id="persist-soap">
+		<from uri="direct:trigger-persist-soap"/>
+		<setBody>
+			<simple>ref:bonjour</simple>
+		</setBody>
+		<marshal ref="soap12"/>
+		<log message="SOAP to persist: ${body}"/>
+		<to uri="file:data?fileName=soap-request.xml"/>
+    </route>
+
+	<!-- sample to convert from SOAP to POJO and call the WS service-->
+    <route id="recover-soap-and-call-cxf">
+		<from uri="file:data?fileName=soap-request.xml"/>
+		<log message="recovered SOAP from file: ${body}"/>
+		<unmarshal ref="soap12"/>
+		<to uri="cxf:bean:mycxf?defaultOperationName=bonjour&amp;wrapped=true"/>
+      	<to uri="mock:recover-soap"/>
+    </route>
+
+  </camelContext>
+
+</blueprint>

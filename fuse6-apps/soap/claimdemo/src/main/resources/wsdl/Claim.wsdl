@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="ClaimService" targetNamespace="http://cxf.learn/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://cxf.learn/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+
+  <wsdl:types>
+	<xs:schema xmlns:tns="http://cxf.learn/" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified" targetNamespace="http://cxf.learn/" version="1.0">
+
+	  <!-- definitions for service 'Cancel' -->
+	  <xs:element name="cancel" type="tns:cancel"/>
+	  <xs:element name="cancelResponse" type="tns:cancelResponse"/>
+
+	  <xs:complexType name="cancel">
+		<xs:sequence>
+		  <xs:element minOccurs="0" name="thenum" type="xs:string"/>
+		</xs:sequence>
+	  </xs:complexType>
+
+	  <xs:complexType name="cancelResponse">
+		<xs:sequence>
+		  <xs:element minOccurs="0" name="return" type="xs:string"/>
+		</xs:sequence>
+	  </xs:complexType>
+
+	  <!-- definitions for service 'status' -->
+	  <xs:element name="status" type="tns:status"/>
+	  <xs:element name="statusResponse" type="tns:statusResponse"/>
+
+	  <xs:complexType name="status">
+		<xs:sequence>
+		  <xs:element minOccurs="1" name="getbyid" type="xs:string"/>
+		</xs:sequence>
+	  </xs:complexType>
+
+	  <xs:complexType name="statusResponse">
+		<xs:sequence>
+		  <xs:element minOccurs="0" name="custid" type="xs:string"/>
+		  <xs:element minOccurs="0" name="polno" type="xs:string"/>
+		  <xs:element minOccurs="0" name="claimno" type="xs:string"/>
+		  <xs:element minOccurs="0" name="status" type="xs:string"/>
+		  <xs:element minOccurs="0" name="fuseversion" type="xs:string"/>
+		</xs:sequence>
+	  </xs:complexType>
+
+	</xs:schema>
+  </wsdl:types>
+
+  <wsdl:message name="statusResponse">
+    <wsdl:part name="parameters" element="tns:statusResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="status">
+    <wsdl:part name="parameters" element="tns:status">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="cancelResponse">
+    <wsdl:part name="parameters" element="tns:cancelResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="cancel">
+    <wsdl:part name="parameters" element="tns:cancel">
+    </wsdl:part>
+  </wsdl:message>
+
+  <wsdl:portType name="claimWS">
+    <wsdl:operation name="status">
+      <wsdl:input name="status" message="tns:status">
+    </wsdl:input>
+      <wsdl:output name="statusResponse" message="tns:statusResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cancel">
+      <wsdl:input name="cancel" message="tns:cancel">
+    </wsdl:input>
+      <wsdl:output name="cancelResponse" message="tns:cancelResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+
+  <wsdl:binding name="ClaimServiceSoapBinding" type="tns:claimWS">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="status">
+      <soap:operation soapAction="status" style="document"/>
+      <wsdl:input name="status">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="statusResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="cancel">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="cancel">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="cancelResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+
+  <wsdl:service name="ClaimService">
+    <wsdl:port name="ClaimWSPort" binding="tns:ClaimServiceSoapBinding">
+      <soap:address location="http://localhost:8182/cxf/claim"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

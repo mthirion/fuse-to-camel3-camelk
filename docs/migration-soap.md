@@ -108,7 +108,7 @@ So, the below conversion must occur both for the marshall and unmarshal method:
 ```
 
 ## Migration of a CXF Server to Springboot
-In this version of the demo, the Fuse 6 application is going to be migrated toward Camel 3.18 on Springboot 2.76. 
+In this version of the demo, the Fuse 6 application is going to be migrated toward Camel 3.20 on Springboot 2.7.12. 
 
 The Camel on Springboot templates uses the below placeholders:   
 - SpringBootApplication.java  
@@ -157,7 +157,7 @@ Test with, for example, SOAPUI.
 
 
 ## Migration of a CXF Server to Quarkus
-In this version of the demo, the Fuse 6 application is going to be migrated toward Camel 3.18 on Quarkus 2.13.5.    
+In this version of the demo, the Fuse 6 application is going to be migrated toward Camel Quarkus 2.13.    
 
 Compared to the Springboot migration described above, the Camel on Quarkus template still relies on the route(s).xml and application.properties file, but releases the SpringBootApplication.java class as well as the beans.xml file.  
 Custom beans now have to be directly annotated with @Named("beanid") and @ApplicationScoped.  

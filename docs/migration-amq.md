@@ -26,7 +26,7 @@ It contains external configuration.
 
 
 ## Migration to Springboot
-In this version of the demo, the Fuse 6 application is going to be migrated toward Camel 3.18 on Springboot 2.76.  
+In this version of the demo, the Fuse 6 application is going to be migrated toward Camel 3.20 on Springboot 2.7.12.  
 
 The Camel on Springboot templates is located in templates/amq.  
 
@@ -61,7 +61,7 @@ mvn clean package
 mvn spring-boot:run
 
 ## Migration to Quarkus
-In this version of the demo, the Fuse 6 application is going to be migrated toward Camel 3.18 on Quarkus 2.13.5  
+In this version of the demo, the Fuse 6 application is going to be migrated toward Camel Quarkus 2.13.  
 
 ### Target protocol and scheme for Springboot
 Currently the only supported protocol provider for Quarkus is amqp.

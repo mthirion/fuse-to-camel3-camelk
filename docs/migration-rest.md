@@ -139,3 +139,8 @@ Both templates (springboot and quarkus) contain important Openshift-related conf
 - Automatic discovery of ConfigMap for the application.properties file
 - Openshift deployments plugins  
 
+Deploy the springboot version to Openshift:  
+_mvn install -Popenshift_ 
+
+Deploy the quarkus to Openshift:  
+_mvn clean package -Popenshift -Dquarkus.kubernetes.deploy=true -Dquarkus.kubernetes-client.trust-certs=true -Dquarkus.openshift.route.expose=true

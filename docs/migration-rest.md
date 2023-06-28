@@ -54,7 +54,7 @@ To leverage the auto-generation of the REST interfaces, an openAPI spec document
 Apicurio API Designer and Apicurio Service Registry are tools that can be of great help in this activity.
 
 ## Migration to Springboot
-In this version of the demo, the Fuse 6 application is going to be migrated toward Camel 3.18 on Springboot 2.76.  
+In this version of the demo, the Fuse 6 application is going to be migrated toward Camel 3.18 on Springboot 2.7.6.  
 
 The Camel on Springboot template uses the below placeholders:  
 - SpringBootApplication.java  
@@ -97,7 +97,7 @@ curl http://localhost:8182/cxf/status/custId/456
 
 
 ## Migration to Quarkus
-In this version of the demo, the Fuse 6 application is going to be migrated toward Camel 3.18 on Quarkus 2.13.5  
+In this version of the demo, the Fuse 6 application is going to be migrated toward Camel on Quarkus 2.13.  
 
 Compared to the Springboot migration described above, the Camel on Quarkus template still relies on the route(s).xml, rest.xml and application.properties file, but releases the SpringBootApplication.java class as well as the beans.xml file.  The custom beans now have to be directly annotated with @Named("beanid") and @ApplicationScoped.
 

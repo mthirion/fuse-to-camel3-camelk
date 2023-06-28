@@ -31,7 +31,7 @@ It contains the Camel route that
 This contains configuration.  
 
 ## Migration to Springboot
-In this version of the demo, the Fuse 6 application is going to be migrated toward Camel 3.18 on Springboot 2.76.  
+In this version of the demo, the Fuse 6 application is going to be migrated toward Camel 3.18 on Springboot 2.7.6.  
 
 The Camel on Springboot templates is located in template/jetty.  
 
@@ -59,7 +59,7 @@ mvn spring-boot:run
 curl  
 
 ## Migration to Quarkus
-In this version of the demo, the Fuse 6 application is going to be migrated toward Camel 3.18 on Quarkus 2.13.5.  
+In this version of the demo, the Fuse 6 application is going to be migrated toward Camel on Quarkus 2.13.  
 
 The jetty endpoint simply has to be replaced by the platform-http one.  
 The pom.xml contains the appropriate dependencies to import the platform-http camel extension, which has a transitive dependency to camel-platform-http-vertx, itself relying on the Quarkus http vertx web server implementation.

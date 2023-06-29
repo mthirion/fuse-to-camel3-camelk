@@ -6,7 +6,7 @@ Link to the video blog:
 The templates in used are those in templates/amq.  
 
 ### Available messaging engines
-[Messaging engines](docs/amq-distributions.md)  
+[Messaging engines](amq-distributions.md)  
 
 ### Fuse 6 source application
 

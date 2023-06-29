@@ -34,25 +34,3 @@ paths:
           description: Invalid ID supplied
         '404':
           description: Customer not found
-  /restcancel/{claimNo}:
-    get:
-      tags:
-        - cancel
-      summary: Cancel claim by ID
-      operationId: cancelById
-      parameters:
-        - name: claimNo
-          in: path
-          description: Number of the claim
-          required: true
-          schema:
-            type: integer
-            format: int64
-      responses:
-        '200':
-          description: successful operation
-        '400':
-          description: Invalid ID supplied
-        '404':
-          description: Claim not found
-

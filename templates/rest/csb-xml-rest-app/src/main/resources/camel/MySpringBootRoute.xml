@@ -1,9 +1,0 @@
-<routes xmlns="http://camel.apache.org/schema/spring">
-
-    <!-- 
-       This is where the content of the Camel <route> must be migrated.
-    -->
-    <route id="myroute">
-    </route>
-
-</routes>

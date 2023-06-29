@@ -1,3 +1,0 @@
-#artemis
-podman run -it --rm -p 8161:8161 -p 61616:61616 -p 5672:5672 -e AMQ_USER=admin -e AMQ_PASSWORD=admin quay.io/artemiscloud/activemq-artemis-broker:artemis.2.28.0
-

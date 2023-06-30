@@ -1,18 +1,20 @@
 <routes xmlns="http://camel.apache.org/schema/spring">
 
   
-    <route id="jms-outboundroute">
+    <route id="jms-route">
     
-        <!-- replace this part 
-        <from uri="timer:mytimer?repeatCount=5&amp;delay=3000&amp;period=2000"/>
-
-        <setBody><simple>This is a JMS message</simple></setBody>
-        <log message="Created JMS message: ${body}"/>
+        <!-- For demo purpose
+        <from uri="timer:mytimer?repeatCount=5&amp;delay=3000"/>
+        <setBody><constant>This is a Spring Boot Core message</constant></setBody>
+        <log message="Create Core message: ${body}"/>
+        <toD uri="jms:{{app.destinationaddress}}"/>
         -->
 
-
-        <toD uri="jms:{{app.destination}}"/>
-        
+        <!-- replace this part -->
+        <from uri="jms:{{app.sourceaddress}}"/>     
+        <log message="Core message received: ${body}"/>
+        <toD uri="jms:{{app.destinationaddress}}"/>
+                
     </route>       
     
 </routes>

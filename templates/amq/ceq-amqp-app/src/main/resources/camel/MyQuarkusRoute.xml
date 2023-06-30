@@ -1,0 +1,23 @@
+<routes xmlns="http://camel.apache.org/schema/spring">
+
+    
+    <route id="amqp-route">
+    
+        <!-- For demo purpose
+        <from uri="timer:mytimer?repeatCount=5&amp;delay=3000"/>
+        <setBody><constant>This is a Quarkus AMQP message</constant></setBody>
+        <log message="Create AMQP message: ${body}"/>
+        <toD uri="amqp:{{app.destinationaddress}}"/>
+        -->
+
+
+        <!-- replace this part -->
+        <from uri="amqp:{{app.sourceaddress}}"/>     
+        <log message="AMQP message received: ${body}"/>
+    
+        <toD uri="amqp:{{app.destinationaddress}}"/>
+        
+    </route>
+
+
+</routes>

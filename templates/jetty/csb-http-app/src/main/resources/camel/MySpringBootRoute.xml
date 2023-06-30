@@ -1,16 +1,25 @@
 <routes xmlns="http://camel.apache.org/schema/spring">
+   
+    <route id="http-route">
 
-
-    <route id="http-inbound-route">
-
-        <from uri="platform-http://{{app.path}}"/>
-        <log message="${body}"/>
-
+        <from uri="platform-http:{{app.path}}?httpMethodRestrict={{app.method}}"/>
+                
         <!-- Continue here -->
+        <log message="received content : ${body}"/> <!-- Displayed if correct MIME -->
         
+
 
     </route>
 
-    
-
+        <!-- 
+            NOTE
+               - Outbound http: 'http4' renamed to 'http'
+                 <toD uri="http://..."/>
+           
+               - Pre-authenticated users:
+                  Camel header "CamelVertxPlatformHttpAuthenticatedUser" of type io.vertx.ext.auth.User contains the Principal
+           
+                  getHeader(VertxPlatformHttpConstants.AUTHENTICATED_USER,io.quarkus.vertx.http.runtime.security.QuarkusHttpUser.class
+                  
+        -->  
 </routes>

@@ -2,11 +2,14 @@
    
     <route id="http-route">
 
-        <from uri="platform-http:{{app.path}}?httpMethodRestrict=PUT"/>
+        <from uri="platform-http:{{app.path}}?httpMethodRestrict={{app.method}}"/>
                 
         <!-- Continue here -->
         <log message="received content : ${body}"/> <!-- Displayed if correct MIME -->
         
+
+
+    </route>
 
         <!-- 
             NOTE
@@ -18,8 +21,5 @@
            
                   getHeader(VertxPlatformHttpConstants.AUTHENTICATED_USER,io.quarkus.vertx.http.runtime.security.QuarkusHttpUser.class
                   
-        -->
-    </route>
-
-  
+        -->  
 </routes>

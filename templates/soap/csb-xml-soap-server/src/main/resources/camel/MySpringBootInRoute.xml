@@ -1,9 +1,0 @@
-<routes xmlns="http://camel.apache.org/schema/spring">
-
-
-	<route id="soap-outboundroute-bean">
-            <from uri="cxf:bean:mycxfendpoint"/>
-
-    </route>
-    
-</routes>

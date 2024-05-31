@@ -51,7 +51,7 @@ The cxf engine used method names to identify the java operation to perform. An '
 
 ### Camel 4 and the REST DSL
 
-With Camel 3, there is no cxfrs anymore in the supported CXF framework. Instead, ReST APIs are represented by a dedicated Camel REST endpoint. In addition, Camel provides a separation of concerns between the definition of the REST API and its imeplmentation as a Camel route. For maximm flexibility, both elements can be stored in separate files and be written in different languages  
+With Camel 4, there is no cxfrs anymore in the supported CXF framework. Instead, ReST APIs are represented by a dedicated Camel REST endpoint. In addition, Camel provides a separation of concerns between the definition of the REST API and its imeplmentation as a Camel route. For maximm flexibility, both elements can be stored in separate files and be written in different languages  
 Finaly, the API definition file does not even have to be written by hand, but can be generated automatically from an openAPI spec.  
 https://github.com/apache/camel/tree/main/tooling/maven/camel-restdsl-openapi-plugin
 
@@ -60,75 +60,30 @@ https://github.com/apache/camel/tree/main/tooling/maven/camel-restdsl-openapi-pl
 To leverage the auto-generation of the REST interfaces, an openAPI spec document is needed. Thus, having openAPI spec for all REST API to migrate can be seen as a prerequisite for the migration. It's anyway a best practice for better general governance, so adding this activity as a preparation step for the migration will only be beneficial.  
 Apicurio API Designer and Apicurio Service Registry are tools that can be of great help in this activity.
 
-## Migration to Springboot
-
-In this version of the demo, the Fuse 6 application is going to be migrated toward Camel 3.18 on Springboot 2.7.6.
-
-The Camel on Springboot template uses the below placeholders:
-
-*   SpringBootApplication.java  
-    To contain the bootstrap class.
-*   camel/route(s).xml  
-    To contain the Camel XML route(s) in NIO XML format.  
-    The routes will be automatically discovered by the Springboot runtime.  
-    This specific XML format can only contain Camel Routes, so the other part of the Blueprint XML (beans and cxfrs API) will go somewhere else.
-*   camel-rest/rests.xml  
-    To contain the API definition (in Camel XML format)
-*   spring/beans.xml  
-    This is where the custom beans references will be listed. It's easier to migrate the bean definition directly in XML as they are already defined in XML in the Fuse 6 source application.
-*   application.properties  
-    This will be the unique configuration file.
-
-![springboot](images/rest-springboot.png?raw=true)
-
-### Springboot migration process
-
-The migration process involves (in any order):
-
-*   moving the fabric8 pid properties to the application.properties file
-*   moving the whole camel route section to the route.xml file
-*   moving the java objects/packages, excluding the Service interface to the src/main/java directory
-*   moving the beans declaration to the spring/beans.xml ile
-*   generating the REST API definition from the OpenAPI spec
-*   adjusting the 'from' part of the route (replacing cxfrs://) based on the generated API definition (openAPI spec's operationID)
-*   adjusting Camel RESTConfiguration options
-
-![migrate-sb](images/migration-springboot-rest.png?raw=true)
-
-Optionally, we can remove the "choice" routing logic from the route.
-
-#### Testing the migrated app
-
-mvn clean package  
-mvn spring-boot:run
-
-curl http://localhost:8182/cxf/status/custId/456
-
 ## Migration to Quarkus
 
-In this version of the demo, the Fuse 6 application is going to be migrated toward Camel on Quarkus 3.2.
+In this version of the demo, the Fuse 6 application is going to be migrated toward Camel extension for Quarkus 4.x.
 
-Compared to the Springboot migration described above, the Camel on Quarkus template still relies on the route(s).xml, rest.xml and application.properties file, but releases the SpringBootApplication.java class as well as the beans.xml file. The custom beans now have to be directly annotated with @Named("beanid") and @ApplicationScoped.
+Compared to the Springboot migration described above, the Camel on Quarkus template still relies on the route(s).xml, rest.xml and application.properties file, but releases the SpringBootApplication.java class as well as the beans.xml file. 
+
+To simplify the migration path from older vesion of Camel, there is now support for Spring-like beans declaration in the XML-IO-DSL.  This removes the need to complete the souce code with Quarkus annotations like in a migration toward Camel v3. 
 
 ![quarkus](images/rest-quarkus.png?raw=true)
 
-### Quarks migration process
+### Quarkus migration process
 
 The migration process involves (in any order):
 
 *   moving the fabric8 pid properties to the application.properties file
-*   moving the whole camel route section to the route.xml file
 *   moving the java objects/packages, excluding the Service interface to the src/main/java directory
-*   adding @Named & @ApplicationScoped annotations to Java classes referenced as custom beans or custom Camel processors.
-*   generating the REST API definition from the OpenAPI spec
-*   adjusting the 'from' part of the route (replacing cxfrs) based on the generated API definition (openAPI spec's operationID)
-*   adjusting Camel RESTConfiguration options
+*   moving the whole camel route section to the route.xml file (within the \<routes> section)
+*   moving the xml bean declaration to the same route.xml file (this time inline as \<bean>)
+    *   Notice that the declaration uses now the atributes “name” instead of id and “type” instead of class
+*   moving the openapi.yaml document to src/spec so that it can be found by the camel-restdsl-openapi plugin
+*   generating the REST API definition from the OpenAPI spec with the plugin, using the command ‘mvn camel-restdsl-openapi:generate-xml’
+*   adjusting the 'from' part of the route (replacing ‘cxfrs://bean…’ by ‘direct:\<operationid>…’) based on the generated API definition (openAPI spec's operationID)
 
 ![migrate-qk](images/migration-quarkus-rest.png?raw=true)
-
-_Note: Camel RestConfiguration with quarkus_  
-There is a slight difference between Springboot and Quarkus in the way they support the Camel RestConfiguration element.  
-With Quarkus, this element is simply not suported as a separate configration entry, and the corresponding properties are to be placed directly in the application.properties file.
 
 #### Testing the migrated app
 

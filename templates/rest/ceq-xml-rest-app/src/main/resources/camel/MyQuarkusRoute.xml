@@ -1,11 +1,17 @@
-<routes xmlns="http://camel.apache.org/schema/spring">
+<camel>
 
     <!-- 
+       This is where Camel processors must be migrated.
+    -->
+    <bean name="..." type="..."/>
+
+     <!-- 
        This is where the content of the Camel <route> must be migrated.
     -->
    
     <route id="myroute">
-        <from uri="direct:..." />
-        
+        <from uri="direct:..."/>
+
     </route>
-</routes>
+
+</camel>
